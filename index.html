@@ -1,1215 +1,1362 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {font: 12.0px 'Apple Symbols'}
-    span.s2 {font: 12.0px 'Hiragino Sans'}
+  <meta charset="UTF-8">
+  <title>Cambridge Ophthalmology Student Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cambridge Ophthalmology Student Society – connecting Cambridge students with ophthalmology teaching, events, and resources.">
+  <style>
+:root {
+ --bg: #050816;
+ --bg-alt: #0b1020;
+ --accent: #3b82f6;
+ --accent-soft: rgba(59,130,246,0.12);
+ --accent-strong: #2563eb;
+ --text: #e5e7eb;
+ --text-muted: #9ca3af;
+ --card-bg: #111827;
+ --border-subtle: #1f2937;
+ --danger: #dc2626;
+ --radius-lg: 18px;
+ --radius-pill: 999px;
+ --shadow-soft: 0 18px 45px rgba(0,0,0,0.35);
+ --shadow-subtle: 0 10px 30px rgba(0,0,0,0.25);
+ --max-width: 1120px;
+ --transition: 200ms ease-out;
+ --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+ "Segoe UI", sans-serif;
+ }
+
+ * {
+ box-sizing: border-box;
+ scroll-behavior: smooth;
+ }
+
+ body {
+ margin: 0;
+ font-family: var(--font-sans);
+ background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);
+ color: var(--text);
+ line-height: 1.5;
+ }
+
+ a {
+ color: inherit;
+ text-decoration: none;
+ }
+
+ img {
+ max-width: 100%;
+ display: block;
+ }
+
+ /* Layout */
+ .page {
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ }
+
+ .container {
+ width: 100%;
+ max-width: var(--max-width);
+ margin: 0 auto;
+ padding: 0 1.25rem;
+ }
+
+ section {
+ padding: 5rem 0 4rem;
+ }
+
+ section:nth-of-type(even) {
+ background: linear-gradient(to bottom, transparent, rgba(15,23,42,0.4));
+ }
+
+ h1, h2 {
+ letter-spacing: 0.02em;
+ }
+
+ .section-header {
+ margin-bottom: 2.75rem;
+ }
+
+ .eyebrow {
+ font-size: 0.8rem;
+ text-transform: uppercase;
+ letter-spacing: 0.16em;
+ color: var(--accent);
+ font-weight: 600;
+ margin-bottom: 0.35rem;
+ }
+
+ .section-title {
+ font-size: clamp(1.6rem, 2vw + 0.4rem, 2.1rem);
+ margin: 0;
+ }
+
+ .section-subtitle {
+ margin-top: 0.75rem;
+ max-width: 38rem;
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ }
+
+ /* Header / Nav */
+ header {
+ position: sticky;
+ top: 0;
+ z-index: 50;
+ backdrop-filter: blur(18px);
+ background: linear-gradient(to bottom, rgba(2,6,23,0.98), rgba(2,6,23,0.92));
+ border-bottom: 1px solid rgba(15,23,42,0.9);
+ }
+
+ .nav {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 0.8rem 0.25rem;
+ gap: 1.5rem;
+ }
+
+ .nav-left {
+ display: flex;
+ align-items: center;
+ gap: 0.7rem;
+ }
+
+ .logo-circle {
+ width: 32px;
+ height: 32px;
+ border-radius: 50%;
+ background: radial-gradient(circle at 30% 20%, #f9fafb, #e5e7eb 28%, #2563eb 32%, #020617 60%);
+ box-shadow: 0 0 30px rgba(59,130,246,0.6);
+ position: relative;
+ overflow: hidden;
+ }
+
+ .logo-circle::after {
+ content: "";
+ position: absolute;
+ inset: 30% 32%;
+ border-radius: 50%;
+ border: 1.4px solid rgba(15,23,42,0.95);
+ }
+
+ .brand-text {
+ display: flex;
+ flex-direction: column;
+ gap: 0.05rem;
+ }
+
+ .brand-title {
+ font-size: 0.98rem;
+ font-weight: 600;
+ }
+
+ .brand-subtitle {
+ font-size: 0.75rem;
+ color: var(--text-muted);
+ }
+
+ .nav-links {
+ display: flex;
+ align-items: center;
+ gap: 0.9rem;
+ font-size: 0.9rem;
+ }
+
+ .nav-links a {
+ padding: 0.3rem 0.6rem;
+ border-radius: 999px;
+ color: var(--text-muted);
+ transition: background var(--transition), color var(--transition), transform var(--transition);
+ }
+
+ .nav-links a:hover {
+ color: var(--text);
+ background: rgba(15,23,42,0.9);
+ transform: translateY(-1px);
+ }
+
+ .nav-cta {
+ border-radius: var(--radius-pill);
+ padding: 0.4rem 0.9rem;
+ background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+ color: white !important;
+ font-weight: 600;
+ box-shadow: 0 10px 25px rgba(37,99,235,0.45);
+ }
+
+ .nav-cta:hover {
+ background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+ transform: translateY(-1px);
+ }
+
+ .nav-toggle {
+ display: none;
+ border: 0;
+ background: transparent;
+ color: var(--text);
+ font-size: 1.2rem;
+ cursor: pointer;
+ }
+
+ /* Hero */
+ .hero {
+ padding-top: 3.5rem;
+ padding-bottom: 4rem;
+ }
+
+ .hero-grid {
+ display: grid;
+ grid-template-columns: minmax(0,1.4fr) minmax(0,1.1fr);
+ gap: 2.4rem;
+ align-items: center;
+ }
+
+ .badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.4rem;
+ padding: 0.22rem 0.7rem;
+ border-radius: 999px;
+ border: 1px solid rgba(148,163,184,0.5);
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.2), rgba(15,23,42,0.9));
+ font-size: 0.75rem;
+ color: var(--text-muted);
+ margin-bottom: 1rem;
+ }
+
+ .badge-dot {
+ width: 8px;
+ height: 8px;
+ border-radius: 50%;
+ background: #22c55e;
+ box-shadow: 0 0 10px rgba(34,197,94,0.8);
+ }
+
+ .hero-title {
+ font-size: clamp(2.1rem, 3vw + 1rem, 2.8rem);
+ margin: 0 0 0.5rem;
+ }
+
+ .hero-highlight {
+ background: linear-gradient(135deg, #e5e7eb, #60a5fa);
+ -webkit-background-clip: text;
+ color: transparent;
+ }
+
+ .hero-text {
+ color: var(--text-muted);
+ max-width: 32rem;
+ font-size: 0.98rem;
+ }
+
+ .hero-meta {
+ margin-top: 1.4rem;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 1.1rem;
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ }
+
+ .meta-pill {
+ padding: 0.3rem 0.75rem;
+ border-radius: 999px;
+ border: 1px solid rgba(148,163,184,0.5);
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.18), rgba(15,23,42,0.9));
+ }
+
+ .hero-actions {
+ margin-top: 2rem;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.7rem;
+ }
+
+ .btn {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.35rem;
+ border-radius: var(--radius-pill);
+ border: 1px solid transparent;
+ padding: 0.55rem 1.1rem;
+ font-size: 0.9rem;
+ cursor: pointer;
+ text-decoration: none;
+ transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
+ }
+
+ .btn-primary {
+ background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+ color: #f9fafb;
+ box-shadow: 0 14px 30px rgba(37,99,235,0.45);
+ }
+
+ .btn-primary:hover {
+ transform: translateY(-1px);
+ box-shadow: 0 18px 40px rgba(37,99,235,0.6);
+ }
+
+ .btn-outline {
+ background: rgba(15,23,42,0.9);
+ border-color: rgba(148,163,184,0.6);
+ color: var(--text-muted);
+ }
+
+ .btn-outline:hover {
+ background: rgba(15,23,42,1);
+ color: var(--text);
+ box-shadow: 0 10px 30px rgba(15,23,42,0.8);
+ }
+
+ .btn-icon {
+ font-size: 1rem;
+ }
+
+ .hero-visual {
+ position: relative;
+ min-height: 240px;
+ }
+
+ .hero-card {
+ position: relative;
+ border-radius: 22px;
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.22), rgba(15,23,42,1));
+ border: 1px solid rgba(148,163,184,0.4);
+ box-shadow: var(--shadow-soft);
+ padding: 1.4rem 1.3rem 1.4rem;
+ overflow: hidden;
+ }
+
+ .hero-card-title {
+ font-size: 0.95rem;
+ margin: 0 0 0.3rem;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 0.6rem;
+ }
+
+ .hero-badge-small {
+ font-size: 0.7rem;
+ border-radius: 999px;
+ padding: 0.18rem 0.6rem;
+ background: rgba(15,23,42,0.9);
+ border: 1px solid rgba(148,163,184,0.4);
+ color: var(--accent);
+ }
+
+ .hero-card-sub {
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ margin-bottom: 0.9rem;
+ }
+
+ .hero-stats {
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0,1fr));
+ gap: 0.7rem;
+ font-size: 0.78rem;
+ }
+
+ .hero-stat {
+ padding: 0.55rem 0.7rem;
+ border-radius: 0.9rem;
+ background: rgba(15,23,42,0.9);
+ border: 1px solid rgba(30,64,175,0.7);
+ }
+
+ .hero-stat-label {
+ color: var(--text-muted);
+ font-size: 0.72rem;
+ margin-bottom: 0.15rem;
+ }
+
+ .hero-stat-value {
+ font-size: 0.86rem;
+ font-weight: 600;
+ }
+
+ .hero-card-footer {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-top: 1rem;
+ font-size: 0.76rem;
+ color: var(--text-muted);
+ }
+
+ .hero-orbit {
+ position: absolute;
+ inset: -10%;
+ pointer-events: none;
+ opacity: 0.32;
+ background:
+ radial-gradient(circle at 10% 20%, rgba(37,99,235,0.3), transparent 60%),
+ radial-gradient(circle at 80% 80%, rgba(6,182,212,0.3), transparent 55%);
+ }
+
+ /* About */
+ .about-grid {
+ display: grid;
+ grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+ gap: 2rem;
+ align-items: start;
+ }
+
+ .about-main {
+ font-size: 0.96rem;
+ color: var(--text-muted);
+ }
+
+ .pill-list {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.45rem;
+ margin-top: 1rem;
+ }
+
+ .pill {
+ font-size: 0.78rem;
+ padding: 0.3rem 0.7rem;
+ border-radius: 999px;
+ border: 1px solid rgba(148,163,184,0.4);
+ background: rgba(15,23,42,0.9);
+ }
+
+ .about-callout {
+ border-radius: var(--radius-lg);
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.16), rgba(15,23,42,0.98));
+ border: 1px solid rgba(148,163,184,0.4);
+ padding: 1.1rem 1.1rem 1rem;
+ box-shadow: var(--shadow-subtle);
+ font-size: 0.85rem;
+ color: var(--text-muted);
+ }
+
+ .about-callout strong {
+ color: var(--text);
+ }
+
+ .about-callout ul {
+ padding-left: 1.1rem;
+ margin: 0.6rem 0 0;
+ }
+
+ .about-callout li {
+ margin-bottom: 0.25rem;
+ }
+
+ /* Committee */
+ .card-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+ gap: 1.2rem;
+ }
+
+ .card {
+ background: var(--card-bg);
+ border-radius: var(--radius-lg);
+ border: 1px solid var(--border-subtle);
+ padding: 0.95rem 1rem;
+ box-shadow: var(--shadow-subtle);
+ font-size: 0.86rem;
+ }
+
+ .card-header {
+ display: flex;
+ align-items: center;
+ gap: 0.7rem;
+ margin-bottom: 0.4rem;
+ }
+
+ .avatar {
+ width: 38px;
+ height: 38px;
+ border-radius: 999px;
+ background: radial-gradient(circle at 30% 20%, #e5e7eb, #2563eb 40%, #020617 70%);
+ border: 1px solid rgba(148,163,184,0.5);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 0.85rem;
+ font-weight: 600;
+ color: #f9fafb;
+ }
+
+ .card-title {
+ font-weight: 600;
+ font-size: 0.9rem;
+ }
+
+ .card-subtitle {
+ font-size: 0.78rem;
+ color: var(--accent);
+ }
+
+ .card-body {
+ color: var(--text-muted);
+ font-size: 0.83rem;
+ margin-top: 0.35rem;
+ }
+
+ .card-footer {
+ margin-top: 0.5rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 0.25rem;
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ }
+
+ .tag {
+ font-size: 0.72rem;
+ padding: 0.18rem 0.6rem;
+ border-radius: 999px;
+ background: rgba(15,23,42,0.9);
+ border: 1px solid rgba(148,163,184,0.4);
+ }
+
+ /* Events */
+ .events-layout {
+ display: grid;
+ grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+ gap: 2rem;
+ align-items: start;
+ }
+
+ .event-list {
+ display: flex;
+ flex-direction: column;
+ gap: 0.9rem;
+ }
+
+ .event {
+ border-radius: var(--radius-lg);
+ background: rgba(15,23,42,0.96);
+ border: 1px solid var(--border-subtle);
+ padding: 0.85rem 0.9rem;
+ font-size: 0.85rem;
+ }
+
+ .event-top {
+ display: flex;
+ justify-content: space-between;
+ gap: 0.75rem;
+ margin-bottom: 0.2rem;
+ }
+
+ .event-name {
+ font-weight: 600;
+ font-size: 0.9rem;
+ }
+
+ .event-meta {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.25rem 0.6rem;
+ margin-top: 0.25rem;
+ }
+
+ .event-pill {
+ font-size: 0.75rem;
+ color: var(--text-muted);
+ }
+
+ .event-cta {
+ font-size: 0.78rem;
+ color: var(--accent);
+ text-decoration: underline;
+ text-decoration-thickness: 1px;
+ text-underline-offset: 3px;
+ }
+
+ .event-note {
+ font-size: 0.78rem;
+ color: var(--text-muted);
+ margin-top: 0.4rem;
+ }
+
+ .events-callout {
+ border-radius: var(--radius-lg);
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.16), rgba(15,23,42,0.98));
+ border: 1px solid rgba(148,163,184,0.5);
+ padding: 1rem 1.1rem;
+ font-size: 0.85rem;
+ color: var(--text-muted);
+ box-shadow: var(--shadow-subtle);
+ }
+
+ .events-callout h3 {
+ margin: 0 0 0.4rem;
+ font-size: 0.9rem;
+ }
+
+ .events-callout ul {
+ padding-left: 1rem;
+ margin: 0.4rem 0 0;
+ }
+
+ /* Resources */
+ .resources-grid {
+ display: grid;
+ grid-template-columns: minmax(0,1.2fr) minmax(0,1.1fr);
+ gap: 2rem;
+ align-items: start;
+ }
+
+ .resource-group {
+ margin-bottom: 1.2rem;
+ }
+
+ .resource-heading {
+ display: flex;
+ align-items: baseline;
+ justify-content: space-between;
+ gap: 0.75rem;
+ margin-bottom: 0.45rem;
+ }
+
+ .resource-heading h3 {
+ font-size: 0.95rem;
+ margin: 0;
+ }
+
+ .resource-heading span {
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ }
+
+ .resource-list {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+ gap: 0.7rem;
+ }
+
+ .resource-chip {
+ font-size: 0.82rem;
+ padding: 0.5rem 0.7rem;
+ border-radius: var(--radius-lg);
+ border: 1px solid var(--border-subtle);
+ background: rgba(15,23,42,0.98);
+ color: var(--text-muted);
+ display: flex;
+ flex-direction: column;
+ gap: 0.18rem;
+ }
+
+ .resource-chip strong {
+ font-size: 0.86rem;
+ color: var(--text);
+ }
+
+ .resource-chip small {
+ font-size: 0.74rem;
+ }
+
+ .resource-chip a {
+ color: var(--accent);
+ font-size: 0.78rem;
+ text-decoration: underline;
+ text-underline-offset: 3px;
+ margin-top: 0.1rem;
+ }
+
+ .condition-card {
+ border-radius: var(--radius-lg);
+ background: rgba(15,23,42,0.98);
+ border: 1px solid var(--border-subtle);
+ padding: 0.95rem 1rem;
+ font-size: 0.86rem;
+ color: var(--text-muted);
+ box-shadow: var(--shadow-subtle);
+ }
+
+ .condition-badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.3rem;
+ font-size: 0.74rem;
+ padding: 0.16rem 0.55rem;
+ border-radius: 999px;
+ background: rgba(15,23,42,0.9);
+ border: 1px solid rgba(148,163,184,0.6);
+ color: var(--accent);
+ margin-bottom: 0.4rem;
+ }
+
+ .condition-title {
+ font-size: 0.95rem;
+ margin: 0 0 0.3rem;
+ color: var(--text);
+ }
+
+ .condition-body ul {
+ margin: 0.4rem 0 0;
+ padding-left: 1rem;
+ }
+
+ .condition-body li {
+ margin-bottom: 0.22rem;
+ }
+
+ /* Quiz */
+ .quiz-layout {
+ display: grid;
+ grid-template-columns: minmax(0, 1.3fr) minmax(0,1fr);
+ gap: 2rem;
+ align-items: start;
+ }
+
+ .quiz-card {
+ border-radius: var(--radius-lg);
+ background: rgba(15,23,42,0.98);
+ border: 1px solid var(--border-subtle);
+ padding: 1rem 1.1rem;
+ box-shadow: var(--shadow-subtle);
+ font-size: 0.9rem;
+ }
+
+ .quiz-question {
+ margin-bottom: 0.9rem;
+ padding-bottom: 0.75rem;
+ border-bottom: 1px dashed rgba(55,65,81,0.7);
+ }
+
+ .quiz-question:last-of-type {
+ border-bottom: 0;
+ padding-bottom: 0.2rem;
+ }
+
+ .quiz-question-title {
+ font-weight: 600;
+ font-size: 0.92rem;
+ margin-bottom: 0.35rem;
+ }
+
+ .quiz-options {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ }
+
+ .quiz-options li {
+ margin-bottom: 0.25rem;
+ }
+
+ .quiz-options label {
+ display: flex;
+ align-items: flex-start;
+ gap: 0.35rem;
+ font-size: 0.86rem;
+ cursor: pointer;
+ color: var(--text-muted);
+ }
+
+ .quiz-options input[type="radio"] {
+ margin-top: 0.12rem;
+ accent-color: var(--accent);
+ cursor: pointer;
+ }
+
+ .quiz-actions {
+ margin-top: 0.9rem;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.6rem;
+ align-items: center;
+ justify-content: space-between;
+ }
+
+ .quiz-result {
+ font-size: 0.86rem;
+ color: var(--text-muted);
+ }
+
+ .quiz-result strong {
+ color: var(--accent);
+ }
+
+ .quiz-note {
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ margin-top: 0.6rem;
+ }
+
+ .quiz-side {
+ font-size: 0.85rem;
+ color: var(--text-muted);
+ }
+
+ .quiz-side-list {
+ margin-top: 0.5rem;
+ padding-left: 1rem;
+ }
+
+ /* Contact / Join */
+ .contact-card {
+ border-radius: var(--radius-lg);
+ background: radial-gradient(circle at top left, rgba(59,130,246,0.2), rgba(15,23,42,0.98));
+ border: 1px solid rgba(148,163,184,0.6);
+ padding: 1.1rem 1.2rem;
+ display: grid;
+ grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+ gap: 1.4rem;
+ align-items: center;
+ box-shadow: var(--shadow-soft);
+ font-size: 0.9rem;
+ }
+
+ .contact-card h3 {
+ margin: 0 0 0.4rem;
+ font-size: 1rem;
+ }
+
+ .contact-card p {
+ margin: 0.25rem 0;
+ color: var(--text-muted);
+ }
+
+ .contact-inline {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.6rem;
+ margin-top: 0.7rem;
+ font-size: 0.86rem;
+ }
+
+ .contact-inline a {
+ color: var(--accent);
+ text-decoration: underline;
+ text-underline-offset: 3px;
+ }
+
+ .contact-form {
+ display: flex;
+ flex-direction: column;
+ gap: 0.55rem;
+ }
+
+ .field {
+ display: flex;
+ flex-direction: column;
+ gap: 0.18rem;
+ font-size: 0.8rem;
+ }
+
+ .field label {
+ color: var(--text-muted);
+ }
+
+ .field input,
+ .field textarea {
+ border-radius: 11px;
+ border: 1px solid rgba(148,163,184,0.6);
+ background: rgba(15,23,42,0.98);
+ padding: 0.45rem 0.7rem;
+ font: inherit;
+ color: var(--text);
+ resize: vertical;
+ min-height: 36px;
+ }
+
+ .field input::placeholder,
+ .field textarea::placeholder {
+ color: rgba(148,163,184,0.7);
+ }
+
+ .field input:focus,
+ .field textarea:focus {
+ outline: 1px solid var(--accent);
+ border-color: var(--accent);
+ box-shadow: 0 0 0 1px rgba(37,99,235,0.4);
+ }
+
+ /* Footer */
+ footer {
+ border-top: 1px solid rgba(15,23,42,0.9);
+ padding: 1.2rem 0 1.4rem;
+ font-size: 0.78rem;
+ color: var(--text-muted);
+ background: #020617;
+ }
+
+ .footer-row {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 0.75rem;
+ flex-wrap: wrap;
+ }
+
+ .footer-links {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.7rem;
+ }
+
+ .footer-links a {
+ text-decoration: underline;
+ text-underline-offset: 3px;
+ }
+
+ /* Responsive */
+ @media (max-width: 900px) {
+ .hero-grid,
+ .about-grid,
+ .events-layout,
+ .resources-grid,
+ .quiz-layout,
+ .contact-card {
+ grid-template-columns: minmax(0, 1fr);
+ }
+
+ .hero {
+ padding-top: 2.5rem;
+ }
+
+ .hero-visual {
+ order: -1;
+ }
+ }
+
+ @media (max-width: 720px) {
+ .nav-links {
+ position: absolute;
+ inset-inline: 0;
+ top: 100%;
+ background: rgba(2,6,23,0.98);
+ border-bottom: 1px solid rgba(15,23,42,0.9);
+ padding: 0.6rem 1.25rem 0.8rem;
+ flex-wrap: wrap;
+ justify-content: flex-start;
+ display: none;
+ }
+
+ .nav-links.show {
+ display: flex;
+ }
+
+ .nav-cta {
+ margin-left: auto;
+ }
+
+ .nav-toggle {
+ display: block;
+ }
+
+ .nav {
+ padding-inline: 0;
+ }
+
+ section {
+ padding: 3.5rem 0 3rem;
+ }
+
+ .contact-card {
+ padding: 1rem 0.9rem;
+ }
+ }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Cambridge Ophthalmology Student Society&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Cambridge Ophthalmology Student Society – connecting Cambridge students with ophthalmology teaching, events, and resources."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg: #050816;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-alt: #0b1020;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--accent: #3b82f6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--accent-soft: rgba(59,130,246,0.12);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--accent-strong: #2563eb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text: #e5e7eb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text-muted: #9ca3af;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--card-bg: #111827;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--border-subtle: #1f2937;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--danger: #dc2626;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius-lg: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius-pill: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--shadow-soft: 0 18px 45px rgba(0,0,0,0.35);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--shadow-subtle: 0 10px 30px rgba(0,0,0,0.25);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--max-width: 1120px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--transition: 200ms ease-out;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",</p>
-<p class="p1"><span class="Apple-converted-space">                   </span>"Segoe UI", sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>scroll-behavior: smooth;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: var(--font-sans);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>img {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Layout */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.page {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: var(--max-width);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0 1.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 5rem 0 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>section:nth-of-type(even) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(to bottom, transparent, rgba(15,23,42,0.4));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1, h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.02em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section-header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 2.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.eyebrow {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.16em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(1.6rem, 2vw + 0.4rem, 2.1rem);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 38rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Header / Nav */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: sticky;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 50;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(18px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(to bottom, rgba(2,6,23,0.98), rgba(2,6,23,0.92));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.8rem 0.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-left {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.logo-circle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at 30% 20%, #f9fafb, #e5e7eb 28%, #2563eb 32%, #020617 60%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 30px rgba(59,130,246,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.logo-circle::after {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset: 30% 32%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1.4px solid rgba(15,23,42,0.95);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.brand-text {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.05rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.brand-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.98rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.brand-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-links {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-links a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.3rem 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: background var(--transition), color var(--transition), transform var(--transition);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-links a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-1px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-cta {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-pill);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.4rem 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, var(--accent), var(--accent-strong));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: white !important;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 25px rgba(37,99,235,0.45);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-cta:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, var(--accent-strong), var(--accent));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-1px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav-toggle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Hero */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-top: 3.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0,1.4fr) minmax(0,1.1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 2.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.badge {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.22rem 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.5);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.2), rgba(15,23,42,0.9));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.badge-dot {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #22c55e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 10px rgba(34,197,94,0.8);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(2.1rem, 3vw + 1rem, 2.8rem);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-highlight {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #e5e7eb, #60a5fa);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-text {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 32rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.98rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-meta {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.meta-pill {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.3rem 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.5);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.18), rgba(15,23,42,0.9));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-actions {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-pill);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid transparent;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.55rem 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, var(--accent), var(--accent-strong));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #f9fafb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 14px 30px rgba(37,99,235,0.45);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-1px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 18px 40px rgba(37,99,235,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-outline {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-color: rgba(148,163,184,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-outline:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 30px rgba(15,23,42,0.8);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-icon {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-visual {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 240px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.22), rgba(15,23,42,1));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-soft);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.4rem 1.3rem 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-card-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-badge-small {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.18rem 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-card-sub {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-stats {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(3, minmax(0,1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-stat {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.55rem 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(30,64,175,0.7);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-stat-label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.15rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-stat-value {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-card-footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.76rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-orbit {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset: -10%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.32;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 10% 20%, rgba(37,99,235,0.3), transparent 60%),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 80% 80%, rgba(6,182,212,0.3), transparent 55%);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* About */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: start;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-main {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.96rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pill-list {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.45rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pill {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.3rem 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-callout {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.16), rgba(15,23,42,0.98));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.1rem 1.1rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-callout strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-callout ul {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.6rem 0 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.about-callout li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Committee */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(170px,1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.95rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.avatar {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 38px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 38px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at 30% 20%, #e5e7eb, #2563eb 40%, #020617 70%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.5);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #f9fafb;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.83rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.18rem 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Events */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.events-layout {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: start;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-list {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.96);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.85rem 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-top {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-name {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-meta {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.25rem 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-pill {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-cta {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration-thickness: 1px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-underline-offset: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-note {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.events-callout {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.16), rgba(15,23,42,0.98));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.5);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1rem 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.events-callout h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.events-callout ul {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.4rem 0 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Resources */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resources-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0,1.2fr) minmax(0,1.1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: start;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-group {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-heading {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: baseline;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.45rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-heading h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-heading span {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-list {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(160px,1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-chip {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.82rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.5rem 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.98);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.18rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-chip strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-chip small {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.74rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.resource-chip a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-underline-offset: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.condition-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.98);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.95rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.condition-badge {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.74rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.16rem 0.55rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.condition-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.condition-body ul {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.4rem 0 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.condition-body li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.22rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Quiz */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-layout {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0, 1.3fr) minmax(0,1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: start;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.98);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1rem 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-question {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px dashed rgba(55,65,81,0.7);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-question:last-of-type {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 0.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-question-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.92rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-options {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-options li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.25rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-options label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-options input[type="radio"] {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.12rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>accent-color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-actions {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-result {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-result strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-note {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-side {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quiz-side-list {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Contact / Join */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-lg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, rgba(59,130,246,0.2), rgba(15,23,42,0.98));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.1rem 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-soft);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-card p {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.25rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-inline {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.86rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-inline a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-underline-offset: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.contact-form {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.55rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.18rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field input,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field textarea {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(148,163,184,0.6);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15,23,42,0.98);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.45rem 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>resize: vertical;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 36px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field input::placeholder,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field textarea::placeholder {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: rgba(148,163,184,0.7);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field input:focus,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.field textarea:focus {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>outline: 1px solid var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 0 1px rgba(37,99,235,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Footer */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 1px solid rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.2rem 0 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #020617;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.footer-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.footer-links {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.footer-links a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-underline-offset: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Responsive */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 900px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-grid,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.about-grid,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.events-layout,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.resources-grid,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.quiz-layout,</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.contact-card {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: minmax(0, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding-top: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-visual {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>order: -1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 720px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.nav-links {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>inset-inline: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>top: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>background: rgba(2,6,23,0.98);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>border-bottom: 1px solid rgba(15,23,42,0.9);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 0.6rem 1.25rem 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>justify-content: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.nav-links.show {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.nav-cta {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.nav-toggle {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.nav {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding-inline: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 3.5rem 0 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.contact-card {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 1rem 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;div class="page"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Header / Nav --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;nav class="nav"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="logo-circle" aria-hidden="true"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="brand-text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="brand-title"&gt;Cambridge Ophthalmology&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="brand-subtitle"&gt;Student Society&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-toggle" aria-label="Toggle navigation" id="navToggle"&gt;<span class="s1">☰</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-links" id="navLinks"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#about"&gt;About&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#committee"&gt;Committee&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#events"&gt;Events&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#resources"&gt;Resources&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#quiz"&gt;Duke Elder Quiz&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="#contact" class="nav-cta"&gt;Join mailing list&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Hero --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero" id="top"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="badge"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="badge-dot"&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Cambridge med students &amp;middot; Ophthalmology hub</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="hero-title"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Cambridge Ophthalmology &lt;span class="hero-highlight"&gt;Student Society&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="hero-text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Connecting Cambridge medical students with teaching, mentorship, and opportunities in</p>
-<p class="p1"><span class="Apple-converted-space">              </span>ophthalmology&amp;nbsp;&amp;mdash; from OSCE skills and simulation to research, electives and the Duke Elder exam.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-meta"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="meta-pill"&gt;OSCE teaching &amp;hyphen; Cambridge-focused&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="meta-pill"&gt;Events &amp; conferences calendar&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="meta-pill"&gt;Weekly Duke Elder Quiz&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-actions"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;a href="#contact" class="btn btn-primary"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Join our mailing list</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="btn-icon"&gt;<span class="s2">↗</span>&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;a href="#resources" class="btn btn-outline"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Explore the Resources Hub</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hero-visual"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hero-orbit"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hero-card-title"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Cambridge Ophthalmology Pathway</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="hero-badge-small"&gt;Student view&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hero-card-sub"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>A quick overview of what we support at each stage of your training.</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hero-stats"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-label"&gt;Pre-clinical&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-value"&gt;Foundations, taster events&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-label"&gt;Clinical years&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-value"&gt;OSCEs, SSCs, projects&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-label"&gt;Beyond finals&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div class="hero-stat-value"&gt;Duke Elder &amp;amp; training&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hero-card-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;Built by Cambridge students&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;For ophthalmology-curious minds&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- About --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="eyebrow"&gt;About us&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 class="section-title"&gt;Who we are&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="section-subtitle"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>The Cambridge Ophthalmology Student Society represents students interested in eye health, visual</p>
-<p class="p1"><span class="Apple-converted-space">            </span>neuroscience, and ophthalmic surgery. We work closely with local ophthalmologists and trainees.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="about-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="about-main"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>We aim to make ophthalmology &lt;strong&gt;accessible, visible, and achievable&lt;/strong&gt; for Cambridge students</p>
-<p class="p1"><span class="Apple-converted-space">              </span>at every stage of medical school. Whether you are simply curious about the specialty or already planning</p>
-<p class="p1"><span class="Apple-converted-space">              </span>a career in ophthalmology, we want to help you:</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;discover what ophthalmology practice actually looks like;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;find &lt;strong&gt;teaching, research, and elective&lt;/strong&gt; opportunities in Cambridge and beyond;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;prepare for exams such as the &lt;strong&gt;Duke Elder&lt;/strong&gt; and clinical OSCE stations;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;connect with trainees and consultants for informal advice and mentorship.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pill-list"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;Peer-led teaching&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;Consultant-led talks&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;Project signposting&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;Simulation &amp; EyeSi&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;Duke Elder preparation&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;aside class="about-callout"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;strong&gt;What we do&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;&lt;strong&gt;Teaching:&lt;/strong&gt; OSCE skills evenings, case-based discussions, and anatomy refreshers.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;&lt;strong&gt;Events:&lt;/strong&gt; advertising local grand rounds, regional meetings, and national conferences.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;&lt;strong&gt;Resources Hub:&lt;/strong&gt; concise blog posts, condition-of-the-week, and curated learning links.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;&lt;strong&gt;Duke Elder support:&lt;/strong&gt; weekly quiz and signposting to high-yield material.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/aside&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Committee --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="committee"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="eyebrow"&gt;Committee&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 class="section-title"&gt;Meet the team&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="section-subtitle"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>A small group of Cambridge medical students coordinating events, resources, and links with local clinicians.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>(Replace these placeholders with your real committee.)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;!-- Example committee member --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;article class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="avatar"&gt;P&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-title"&gt;Name Surname&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-subtitle"&gt;President&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Leads the society, coordinates with consultants and trainees, and oversees teaching, events, and projects.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag"&gt;Clinical Year X&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;@cam.ac.uk&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/article&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;article class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="avatar"&gt;V&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-title"&gt;Name Surname&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-subtitle"&gt;Vice-President / Teaching Lead&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Organises peer-led teaching, OSCE revision, and links students with teaching opportunities.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag"&gt;Clinical Year X&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;@cam.ac.uk&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/article&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;article class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="avatar"&gt;E&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-title"&gt;Name Surname&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-subtitle"&gt;Events &amp;amp; Conferences Officer&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Maintains the Cambridge-focused events calendar and advertises regional/national meetings.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag"&gt;Year X&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;@cam.ac.uk&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/article&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;article class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="avatar"&gt;R&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-title"&gt;Name Surname&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-subtitle"&gt;Resources &amp;amp; Duke Elder Lead&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Curates learning resources, writes blog content, and updates the weekly Duke Elder quiz.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag"&gt;Year X&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;@cam.ac.uk&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/article&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Events --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="events"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="eyebrow"&gt;Events &amp; conferences&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 class="section-title"&gt;Cambridge &amp; UK ophthalmology events&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="section-subtitle"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>A Cambridge-focused calendar of local teaching, departmental meetings, and national conferences that are</p>
-<p class="p1"><span class="Apple-converted-space">            </span>realistically accessible to medical students.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+  <div class="page">
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="nav-left">
+            <div class="logo-circle" aria-hidden="true"></div>
+            <div class="brand-text">
+              <div class="brand-title">Cambridge Ophthalmology</div>
+              <div class="brand-subtitle">Student Society</div>
+            </div>
+          </div>
+          <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">☰</button>
+          <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#committee">Committee</a>
+            <a href="#events">Events</a>
+            <a href="#resources">Resources</a>
+            <a href="#quiz">Duke Elder Quiz</a>
+            <a href="#contact" class="nav-cta">Join mailing list</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="badge">Cambridge med students · Ophthalmology hub</div>
+              <h1 class="hero-title">Cambridge Ophthalmology Student Society</h1>
+              <p class="hero-text">Connecting Cambridge medical students with teaching, mentorship, and opportunities in ophthalmology — from OSCE skills and simulation to research, electives and the Duke Elder exam.</p>
+              <div class="hero-meta">
+                <div class="meta-pill">OSCE teaching – Cambridge-focused</div>
+                <div class="meta-pill">Events & conferences calendar</div>
+                <div class="meta-pill">Weekly Duke Elder Quiz</div>
+              </div>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Join our mailing list <span class="btn-icon">↗</span></a>
+                <a href="#resources" class="btn btn-outline">Explore the Resources Hub</a>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="hero-card">
+                <div class="hero-orbit"></div>
+                <div class="hero-card-title">
+                  <span>Cambridge Ophthalmology Pathway</span>
+                  <span class="hero-badge-small">Student view</span>
+                </div>
+                <div class="hero-card-sub">A quick overview of what we support at each stage of your training.</div>
+                <div class="hero-stats">
+                  <div class="hero-stat">
+                    <div class="hero-stat-label">Pre-clinical</div>
+                    <div class="hero-stat-value">Foundations, taster events</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-label">Clinical</div>
+                    <div class="hero-stat-value">OSCE skills, EyeSi sessions</div>
+                  </div>
+                  <div class="hero-stat">
+                    <div class="hero-stat-label">Beyond</div>
+                    <div class="hero-stat-value">Research, electives, Duke Elder</div>
+                  </div>
+                </div>
+                <div class="hero-footer">
+                  <div class="hero-footer-title">Built by Cambridge students</div>
+                  <div class="hero-footer-sub">For ophthalmology-curious minds</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">About us</div>
+            <h2 class="section-title">Who we are</h2>
+            <p class="section-subtitle">The Cambridge Ophthalmology Student Society represents students interested in eye health, visual neuroscience, and ophthalmic surgery. We work closely with local ophthalmologists and trainees.</p>
+          </div>
+          <div class="about-grid">
+            <div class="about-main">
+              <p>We aim to make ophthalmology <strong>accessible, visible, and achievable</strong> for Cambridge students at every stage of medical school. Whether you are simply curious about the specialty or already planning a career in ophthalmology, we want to help you:</p>
+              <ul>
+                <li>discover what ophthalmology practice actually looks like;</li>
+                <li>find <strong>teaching, research, and elective</strong> opportunities in Cambridge and beyond;</li>
+                <li>prepare for exams such as the <strong>Duke Elder</strong> and clinical OSCE stations;</li>
+                <li>connect with trainees and consultants for informal advice and mentorship.</li>
+              </ul>
+              <div class="pill-list">
+                <span>Peer-led teaching</span>
+                <span>Consultant-led talks</span>
+                <span>Project signposting</span>
+                <span>Simulation & EyeSi</span>
+                <span>Duke Elder preparation</span>
+              </div>
+            </div>
+            <aside class="about-callout">
+              <strong>What we do</strong>
+              <ul>
+                <li><strong>Teaching:</strong> OSCE skills evenings, case-based discussions, and anatomy refreshers.</li>
+                <li><strong>Events:</strong> advertising local grand rounds, regional meetings, and national conferences.</li>
+                <li><strong>Resources Hub:</strong> concise blog posts, condition-of-the-week, and curated learning links.</li>
+                <li><strong>Duke Elder support:</strong> weekly quiz and signposting to high-yield material.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="committee">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">Committee</div>
+            <h2 class="section-title">Meet the team</h2>
+            <p class="section-subtitle">A small group of Cambridge medical students coordinating events, resources, and links with local clinicians. (Replace these placeholders with your real committee.)</p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <div class="card-header">
+                <div class="avatar">P</div>
+                <div>
+                  <div class="card-title">Name Surname</div>
+                  <div class="card-subtitle">President</div>
+                </div>
+              </div>
+              <div class="card-body">Leads the society, coordinates with consultants and trainees, and oversees teaching, events, and projects.</div>
+              <div class="card-footer">
+                <span class="tag">Clinical Year X</span>
+                <span>@cam.ac.uk</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <div class="avatar">V</div>
+                <div>
+                  <div class="card-title">Name Surname</div>
+                  <div class="card-subtitle">Vice-President / Teaching Lead</div>
+                </div>
+              </div>
+              <div class="card-body">Organises peer-led teaching, OSCE revision, and links students with teaching opportunities.</div>
+              <div class="card-footer">
+                <span class="tag">Clinical Year X</span>
+                <span>@cam.ac.uk</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <div class="avatar">E</div>
+                <div>
+                  <div class="card-title">Name Surname</div>
+                  <div class="card-subtitle">Events & Conferences Officer</div>
+                </div>
+              </div>
+              <div class="card-body">Maintains the Cambridge-focused events calendar and advertises regional/national meetings.</div>
+              <div class="card-footer">
+                <span class="tag">Year X</span>
+                <span>@cam.ac.uk</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <div class="avatar">R</div>
+                <div>
+                  <div class="card-title">Name Surname</div>
+                  <div class="card-subtitle">Resources & Duke Elder Lead</div>
+                </div>
+              </div>
+              <div class="card-body">Curates learning resources, writes blog content, and updates the weekly Duke Elder quiz.</div>
+              <div class="card-footer">
+                <span class="tag">Year X</span>
+                <span>@cam.ac.uk</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="events">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">Events & conferences</div>
+            <h2 class="section-title">Cambridge & UK ophthalmology events</h2>
+            <p class="section-subtitle">A Cambridge-focused calendar of local teaching, departmental meetings, and national conferences that are realistically accessible to medical students.</p>
+          </div>
+          <div class="events-layout">
+            <div class="event-list">
+              <div class="event-card">
+                <div class="event-top">
+                  <div>
+                    <div class="event-name">Addenbrooke's Ophthalmology Grand Round</div>
+                    <div class="event-meta">
+                      <span class="event-pill">First Tuesday, 7:30pm</span>
+                      <span class="event-pill">Seminar Room 3</span>
+                    </div>
+                  </div>
+                  <a class="event-cta" href="#contact">RSVP</a>
+                </div>
+                <div class="event-note">Short case presentations and journal club with consultants and registrars.</div>
+              </div>
+              <div class="event-card">
+                <div class="event-top">
+                  <div>
+                    <div class="event-name">OSCE Skills Evening: Eye Examination</div>
+                    <div class="event-meta">
+                      <span class="event-pill">22 May · 6pm</span>
+                      <span class="event-pill">Clinical School Skills Lab</span>
+                    </div>
+                  </div>
+                  <a class="event-cta" href="#contact">Sign up</a>
+                </div>
+                <div class="event-note">Hands-on slit lamp, fundoscopy practice, and emergency eye assessment.</div>
+              </div>
+              <div class="event-card">
+                <div class="event-top">
+                  <div>
+                    <div class="event-name">National Undergraduate Ophthalmology Conference</div>
+                    <div class="event-meta">
+                      <span class="event-pill">September</span>
+                      <span class="event-pill">Hybrid</span>
+                    </div>
+                  </div>
+                  <a class="event-cta" href="https://www.rsm.ac.uk/sections/ophthalmology/">Details</a>
+                </div>
+                <div class="event-note">Abstract submissions, trainee panels, and networking with UK societies.</div>
+              </div>
+            </div>
+            <aside class="events-callout">
+              <h3>How we keep you updated</h3>
+              <ul>
+                <li>Monthly newsletter with upcoming teaching and conferences.</li>
+                <li>WhatsApp group for last-minute opportunities and cancellations.</li>
+                <li>Signposting to bursaries, electives, and mentorship schemes.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="resources">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">Resources</div>
+            <h2 class="section-title">Learning hub</h2>
+            <p class="section-subtitle">Curated Cambridge-focused reading, quick-hit revision cards, and links to high-yield Duke Elder material.</p>
+          </div>
+          <div class="resources-grid">
+            <div>
+              <div class="resource-group">
+                <div class="resource-heading">
+                  <h3>Teaching packs</h3>
+                  <span>Short reads for clinics</span>
+                </div>
+                <div class="resource-list">
+                  <div class="resource-chip"><strong>Slit lamp basics</strong><small>Setup, fluorescein, red flags</small></div>
+                  <div class="resource-chip"><strong>Acute red eye</strong><small>Differentials & primary care tips</small></div>
+                  <div class="resource-chip"><strong>Visual acuity</strong><small>Testing tricks for OSCEs</small></div>
+                </div>
+              </div>
+              <div class="resource-group">
+                <div class="resource-heading">
+                  <h3>Exam prep</h3>
+                  <span>Duke Elder focus</span>
+                </div>
+                <div class="resource-list">
+                  <div class="resource-chip"><strong>Weekly quiz archive</strong><small>Short MCQs with answers</small><a href="#quiz">View quiz</a></div>
+                  <div class="resource-chip"><strong>Condition of the week</strong><small>Annotated images & pearls</small></div>
+                  <div class="resource-chip"><strong>OSCE station bank</strong><small>Communication & examination</small></div>
+                </div>
+              </div>
+            </div>
+            <aside class="condition-card">
+              <div class="condition-badge">Condition of the week</div>
+              <div class="condition-title">Central retinal artery occlusion</div>
+              <div class="condition-body">
+                <ul>
+                  <li>Painless monocular vision loss; afferent pupillary defect.</li>
+                  <li>Cherry-red spot at the macula with retinal pallor.</li>
+                  <li>Call ophthalmology urgently; consider ocular massage and lowering IOP.</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">Duke Elder quiz</div>
+            <h2 class="section-title">Test yourself</h2>
+            <p class="section-subtitle">A short weekly quiz to keep core ophthalmology facts fresh. Submit your answers to see the key points.</p>
+          </div>
+          <div class="quiz-layout">
+            <div class="quiz-card">
+              <div class="quiz-question">
+                <div class="quiz-question-title">1. Which cranial nerve supplies the lateral rectus?</div>
+                <ul class="quiz-options">
+                  <li><label><input type="radio" name="q1" value="III">Oculomotor (III)</label></li>
+                  <li><label><input type="radio" name="q1" value="IV">Trochlear (IV)</label></li>
+                  <li><label><input type="radio" name="q1" value="VI">Abducens (VI)</label></li>
+                </ul>
+              </div>
+              <div class="quiz-question">
+                <div class="quiz-question-title">2. What is the first-line management for acute angle-closure glaucoma?</div>
+                <ul class="quiz-options">
+                  <li><label><input type="radio" name="q2" value="pilocarpine">Topical pilocarpine immediately</label></li>
+                  <li><label><input type="radio" name="q2" value="acetazolamide">IV acetazolamide and urgent ophthalmology review</label></li>
+                  <li><label><input type="radio" name="q2" value="steroids">High-dose topical steroids</label></li>
+                </ul>
+              </div>
+              <div class="quiz-actions">
+                <button class="btn btn-primary" id="submitQuiz">Check answers</button>
+                <div class="quiz-result" id="quizResult"></div>
+              </div>
+              <div class="quiz-note">We publish a fresh set every week. Send us your own questions!</div>
+            </div>
+            <aside class="quiz-side">
+              <p><strong>Why this matters</strong></p>
+              <ul class="quiz-side-list">
+                <li>Quick practice for the Duke Elder syllabus.</li>
+                <li>Reinforces key OSCE communication points.</li>
+                <li>Great prompts for teaching small groups.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow">Contact</div>
+            <h2 class="section-title">Join the mailing list</h2>
+            <p class="section-subtitle">Sign up for updates on teaching, events, and the Duke Elder quiz. We reply within a couple of days.</p>
+          </div>
+          <div class="contact-card">
+            <div>
+              <h3>Stay connected</h3>
+              <p>We share opportunities from Cambridge ophthalmologists, trainee mentors, and national student societies.</p>
+              <div class="contact-inline">
+                <span>Email: <a href="mailto:ophth-soc@cam.ac.uk">ophth-soc@cam.ac.uk</a></span>
+                <span>Instagram: <a href="https://instagram.com">@cam_ophth</a></span>
+              </div>
+            </div>
+            <form class="contact-form">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" placeholder="Full name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="you@cam.ac.uk" required>
+              </div>
+              <div class="field">
+                <label for="interest">What are you interested in?</label>
+                <textarea id="interest" name="interest" rows="3" placeholder="Teaching, research, conferences..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Join the list</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-row">
+        <div>Cambridge Ophthalmology Student Society · Student-led, not-for-profit.</div>
+        <div class="footer-links">
+          <a href="#top">Back to top</a>
+          <a href="#events">Events</a>
+          <a href="#resources">Resources</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle?.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+    const quizResult = document.getElementById('quizResult');
+    document.getElementById('submitQuiz')?.addEventListener('click', () => {
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      let score = 0;
+      if (q1 === 'VI') score++;
+      if (q2 === 'acetazolamide') score++;
+      quizResult.textContent = `You scored ${score}/2. Lateral rectus is VI; acute angle closure needs urgent acetazolamide and ophthalmology review.`;
+    });
+  </script>
 </body>
 </html>
